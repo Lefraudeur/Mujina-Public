@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="mclibs">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/libs/mclibs" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/libs/mclibs" recursive="false" />
+  </library>
+</component>
