@@ -1,0 +1,59 @@
+name: Build
+
+on:
+    push:
+      branches:
+      - master
+    pull_request:
+      branches:
+      - master
+      
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+        fail-fast: false
+        matrix:
+            os: [ubuntu-latest, windows-latest]
+
+    permissions: write-all
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+            distribution: 'temurin'
+            java-version: '17'
+
+      - name: Add permissions
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+            chmod +x libMujina/InjectableJar/ignore_File2Hex
+            chmod +x build.sh
+
+      - name: Build for Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: ./build.sh
+
+      - name: Build for Windows
+        if: matrix.os == 'windows-latest'
+        run: ./build-windows.bat
+
+      - name: Build fail check
+        if: ${{ hashFiles('Build/liblibMujina.so') == '' && hashFiles('Build/Release/libMujina.dll') == ''}}
+        run: exit 1
+      
+      - name: Create Artifact for Linux
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+            name: Linux Build
+            path: Build/liblibMujina.so
+
+      - name: Create Artifact for Windows
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+            name: Windows Build
+            path: Build/Release/libMujina.dll
