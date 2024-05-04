@@ -377,3 +377,9 @@ FodyWeavers.xsd
 Build/
 /libMujina/InjectableJar/InjectableJar.jar
 /libMujina/InjectableJar/InjectableJar.jar.hpp
+
+# Ant
+compile/
+
+# IDE
+.idea/

@@ -26,3 +26,8 @@ elseif(UNIX)
 	target_link_libraries(libMujina PUBLIC "X11")
 	target_include_directories(libMujina PUBLIC "libMujina/include/JNI/linux")
 endif()
+
+
+# JNI include
+find_package(JNI REQUIRED)
+include_directories(${JNI_INCLUDE_DIRS})

@@ -1,0 +1,48 @@
+<project name="Mujina-Public" default="dist" basedir=".">
+  <description>
+    Mujina-Public build file.
+  </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="compile" location="compile"/>
+  <property name="libs" location="libs"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+    <mkdir dir="${compile}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="Compile the source">
+    <!-- Compile the Java code from ${src} into ${compile} -->
+    <javac srcdir="${src}" destdir="${compile}">
+        <classpath>
+            <fileset dir="${libs}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </classpath>
+    </javac>
+  </target>
+
+  <target name="dist" depends="compile"
+        description="Generate the distribution">
+    <!-- Create the libs directory -->
+    <mkdir dir="${build}/libs"/>
+
+    <!-- Put everything in ${build} into the InjectableJar.jar file -->
+    <jar destfile="${build}/libs/InjectableJar.jar" basedir="${compile}">
+        <zipgroupfileset dir="${libs}" includes="asm-9.6.jar"/>
+    </jar>
+  </target>
+
+  <target name="clean"
+        description="Clean up">
+    <!-- Delete the ${compile} directory -->
+    <delete dir="${compile}"/>
+  </target>
+
+</project>

@@ -11,8 +11,13 @@ else
 fi
 cd ./libMujina/InjectableJar/InjectableJar
 echo "Cd'd in to $PWD"
-java -jar "tiny-remapper-0.10.1+local-fat.jar" "out/artifacts/InjectableJar_jar/InjectableJar.jar" "../InjectableJar.jar" "yarn-tiny-1.20.4+build.local" named intermediary "libs" "libs/mclibs"
+
+echo "Starting java build..."
+ant
+
 echo "Remapping jar..."
+java -jar "tiny-remapper-0.10.1+local-fat.jar" "build/libs/InjectableJar.jar" "../InjectableJar.jar" "yarn-tiny-1.20.4+build.local" named intermediary "libs" "libs/mclibs"
+
 cd ..
 echo "Cd'd in to $PWD"
 

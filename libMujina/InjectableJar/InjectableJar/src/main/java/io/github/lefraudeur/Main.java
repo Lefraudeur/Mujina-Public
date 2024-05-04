@@ -28,9 +28,7 @@ public final class Main
 {
     public final static MinecraftClient mc = MinecraftClient.getInstance();
     public final static String clientVersion = "1.0";
-    public static void main(String[] args)
-    {
-    }
+    
     public final static Module[] modules = new Module[] {
             // Combat category
             new Aura(),

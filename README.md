@@ -1,13 +1,11 @@
 # Mujina
-A cross-platform injectable cheat base for minecraft made in java, loaded with c++ 
+A cross-platform injectable cheat base for minecraft made in java, loaded with c++
 
-Not done
+One of the only cheats that works both on windows and linux.\
+By default this cheat can be injected in minecraft fabric 1.20.4. It contains some example modules to showcase the different features this base provides.
 
-One of the only cheat that works both on windows and linux.\
-By default this cheat can be injected in minecraft fabric 1.20.4, it contains some example modules to showcase the different features this base provides.
-
-This is more like a proof concept right now, its main purpose is to show that you can make injectable cheats with java.\
-There is a lot of useless / over-complicated code because it wasn't supposed to be public at first, and its part of a future bigger project.
+This is more like a proof of concept right now, its main purpose is to show that you can make injectable cheats with java.\
+There is a lot of useless and over-complicated code because it wasn't supposed to be public at first, and its part of a future bigger project.
 
 Techniques used in this project should already be public knowledge (the jvm is documented really well) but somehow people still have no clue it exists.\
 Before asking for support, refer to official jdk documentation, it will answer most of your questions.\
@@ -26,26 +24,25 @@ You still need to read the 300000 page documentations at the moment.
 ## Basic Structure
 
 ### - Java Cheat :
-The java project is located in `libMujina/InjectableJar/InjectableJar`, the folder has to be oppened with Intellij\
-it contains the cheat's code, most of the time you only have to edit the java code.\
-Once you are done editing the code, build the project with Intellij.\
-A jar file will be generated in "out/artifacts/InjectableJar_jar/InjectableJar.jar".\
-In the building process, this jar file is first remapped then converted to a C++ array so that it can be compiled into an injectable dll.
+The java project is located in `libMujina/InjectableJar/InjectableJar`, the folder has to be oppened with Intellij.\
+It contains the cheat's java code, most of the time you only have to edit that.\
+
+Once you are done editing the code, use the proper build script for your system.\
+In the building process, the jar file is first remapped and then converted to a C++ array so that it can be compiled into an injectable dll.
 
 ### - C++ Loader :
-This part of the project takes the bytes of your jar file and embed it into a dll.\
-The dll will extract the .class files from your jar file using miniz,
-each class will then be loaded using jni defineClass.
+This part of the project takes the bytes of your jar file and embeds it into a dll.\
+The dll will extract the .class files from your jar file using miniz and
+each class will then be loaded using JNI defineClass method.
 
 ## Events / Existing Java code modification
 This is the almost interesting part buut I'm too lazy to explain for now.
 
 ## Build Process :
-figure it out yourself lmao
 
+Install ant and run the relative build script.
 
-
-Following text is Lagoon expressing its creativity
+The result will be saved at `Build/Releases/libMujina.dll` or `Build/liblibMujina.so` if you are using linux.
 
 ## Mythology
 Mujina takes inspiration from the Japanese Mythology, and incorporates it in to its symbolism. Mujina (also known as the Noppera-Bo), are faceless yõkai who seem like normal people from far away, but on closer inspection are faceless beings, who deeply unsettle and scare those who see them. Such is the user of the client - blends in and is faceless. 
@@ -149,3 +146,10 @@ CrystalEU aka Nullable - Bypasses and CLI
 - [ ] Teleport
 - [ ] TpAura(?) (too blatant + doesnt bypass?)
 - [ ] DupeUtils
+
+## Contributors
+<a href="https://github.com/Lefraudeur/Mujina-Public/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Lefraudeur/Mujina-Public" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).

@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="InjectableJar:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/InjectableJar_jar</output-path>
-    <root id="archive" name="InjectableJar.jar">
-      <element id="module-output" name="InjectableJar" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/libs/asm-9.6.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
