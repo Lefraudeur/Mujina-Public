@@ -48,12 +48,12 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
         with:
-            name: Linux Build
+            name: Mujina Linux ${{ github.sha }}
             path: Build/liblibMujina.so
 
       - name: Create Artifact for Windows
         if: matrix.os == 'windows-latest'
         uses: actions/upload-artifact@v4
         with:
-            name: Windows Build
+            name: Mujina Windows ${{ github.sha }}
             path: Build/Release/libMujina.dll
