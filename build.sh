@@ -7,7 +7,7 @@ if [ -e "./libMujina/InjectableJar/InjectableJar.jar" ] && [ -e "./libMujina/Inj
     echo "Deleting files from last build..."
 else
     # If any of the files do not exist, print a message
-    echo "Starting frsh build..."
+    echo "Starting fresh build..."
 fi
 cd ./libMujina/InjectableJar/InjectableJar
 echo "Cd'd in to $PWD"
