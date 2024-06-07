@@ -24,7 +24,7 @@ You still need to read the 300000 page documentations at the moment.
 ## Basic Structure
 
 ### - Java Cheat :
-The java project is located in `libMujina/InjectableJar/InjectableJar`, the folder has to be oppened with Intellij.\
+The java project is located in `libMujina/InjectableJar/InjectableJar`, the folder has to be opened with Intellij.\
 It contains the cheat's java code, most of the time you only have to edit that.\
 
 Once you are done editing the code, use the proper build script for your system.\
