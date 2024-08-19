@@ -1,5 +1,7 @@
 # Mujina
-A cross-platform injectable cheat base for minecraft made in java, loaded with c++
+A cross-platform injectable cheat base for minecraft made in java, loaded with c++ 
+
+press H or right shift to open the gui (depends on the version)
 
 One of the only cheats that works both on windows and linux.\
 By default this cheat can be injected in minecraft fabric 1.20.4. It contains some example modules to showcase the different features this base provides.
