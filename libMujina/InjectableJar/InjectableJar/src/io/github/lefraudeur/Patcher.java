@@ -37,6 +37,13 @@ public final class Patcher  {
     public static final String obf_net_minecraft_block_BlockState = "net/minecraft/class_2680";
     public static final String obf_net_minecraft_util_shape_VoxelShape = "net/minecraft/class_265";
 
+    public static final String obf_net_minecraft_client_render_WorldRenderer = "net/minecraft/class_761";
+    public static final String obf_net_minecraft_client_render_WorldRenderer_render = "method_22710";
+    public static final String obf_net_minecraft_client_util_math_MatrixStack = "net/minecraft/class_4587";
+    public static final String obf_net_minecraft_client_render_Camera = "net/minecraft/class_4184";
+    public static final String obf_net_minecraft_client_render_LightmapTextureManager = "net/minecraft/class_765";
+    public static final String org_joml_Matrix4f = "org/joml/Matrix4f";
+
 
     //TODO: reduce repeating code
     public static byte[] patch_net_minecraft_client_network_ClientCommonNetworkHandler(byte[] original_class)
@@ -238,6 +245,49 @@ public final class Patcher  {
         return classWriter.toByteArray();
     }
 
+    public static byte[] patch_net_minecraft_client_render_WorldRenderer(byte[] original_class)
+    {
+        ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
+        ClassReader classReader = new ClassReader(original_class);
+        MethodModifier mod = new MethodModifier
+        (
+            obf_net_minecraft_client_render_WorldRenderer_render,
+            "(L" + obf_net_minecraft_client_util_math_MatrixStack + ";FJZL"
+            + obf_net_minecraft_client_render_Camera + ";L"
+            + obf_net_minecraft_client_render_GameRenderer + ";L"
+            + obf_net_minecraft_client_render_LightmapTextureManager + ";L"
+            + org_joml_Matrix4f + ";)V",
+            (MethodVisitor mv) ->
+            {
+                int index = store_and_post_event(mv, "io.github.lefraudeur.events.PreRender3DEvent",
+                obf_net_minecraft_client_render_WorldRenderer,
+                obf_net_minecraft_client_util_math_MatrixStack,
+                "F_primitive", "J_primitive", "Z_primitive",
+                obf_net_minecraft_client_render_Camera,
+                obf_net_minecraft_client_render_GameRenderer,
+                obf_net_minecraft_client_render_LightmapTextureManager,
+                org_joml_Matrix4f);
+                check_cancel_void(mv, index);
+            },
+            null,
+            (MethodVisitor mv) ->
+            {
+                store_and_post_event(mv, "io.github.lefraudeur.events.PostRender3DEvent",
+                obf_net_minecraft_client_render_WorldRenderer,
+                obf_net_minecraft_client_util_math_MatrixStack,
+                "F_primitive", "J_primitive", "Z_primitive",
+                obf_net_minecraft_client_render_Camera,
+                obf_net_minecraft_client_render_GameRenderer,
+                obf_net_minecraft_client_render_LightmapTextureManager,
+                org_joml_Matrix4f);
+            }
+        );
+        MethodModifier[] modifiers = {mod};
+        MethodClassTransformer methodClassTransformer = new MethodClassTransformer(ASM_VERSION, classWriter, classReader, modifiers);
+        classReader.accept(methodClassTransformer, 0);
+        return classWriter.toByteArray();
+    }
+
     //IGNORE LMAO
 
     // I did not ignore, I fixed :uwu:
@@ -274,6 +324,7 @@ public final class Patcher  {
     {
         mv.visitLdcInsn(types.length);
         mv.visitTypeInsn(Opcodes.ANEWARRAY, "java/lang/Object");
+        int param_index = startIndex;
         for (int i = 0; i < types.length; ++i)
         {
             mv.visitInsn(Opcodes.DUP);
@@ -281,26 +332,50 @@ public final class Patcher  {
             switch (types[i])
             {
                 case "S_primitive":
+                    mv.visitTypeInsn(Opcodes.NEW, "java/lang/Short");
+                    mv.visitInsn(Opcodes.DUP);
+                    mv.visitVarInsn(Opcodes.ILOAD, param_index);
+                    mv.visitInsn(Opcodes.I2S);
+                    mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Short", "<init>", "(S)V", false);
+                    break;
                 case "Z_primitive":
-                case "I_primitive": //TODO: handle other primitive types
-                    mv.visitVarInsn(Opcodes.ILOAD, startIndex + i);
+                    mv.visitTypeInsn(Opcodes.NEW, "java/lang/Boolean");
+                    mv.visitInsn(Opcodes.DUP);
+                    mv.visitVarInsn(Opcodes.ILOAD, param_index);
+                    mv.visitInsn(Opcodes.I2B);
+                    mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Boolean", "<init>", "(Z)V", false);
+                    break;
+                case "I_primitive":
+                    mv.visitTypeInsn(Opcodes.NEW, "java/lang/Integer");
+                    mv.visitInsn(Opcodes.DUP);
+                    mv.visitVarInsn(Opcodes.ILOAD, param_index);
+                    mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Integer", "<init>", "(I)V", false);
                     break;
                 case "J_primitive":
-                    mv.visitVarInsn(Opcodes.LLOAD, startIndex + i);
+                    mv.visitTypeInsn(Opcodes.NEW, "java/lang/Long");
+                    mv.visitInsn(Opcodes.DUP);
+                    mv.visitVarInsn(Opcodes.LLOAD, param_index);
+                    mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Long", "<init>", "(J)V", false);
+                    ++param_index; // J takes 2 local variable indexes
                     break;
                 case "F_primitive":
                     mv.visitTypeInsn(Opcodes.NEW, "java/lang/Float");
                     mv.visitInsn(Opcodes.DUP);
-                    mv.visitVarInsn(Opcodes.FLOAD, startIndex + i);
+                    mv.visitVarInsn(Opcodes.FLOAD, param_index);
                     mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Float", "<init>", "(F)V", false);
                     break;
                 case "D_primitive":
-                    mv.visitVarInsn(Opcodes.DLOAD, startIndex + i);
+                    mv.visitTypeInsn(Opcodes.NEW, "java/lang/Double");
+                    mv.visitInsn(Opcodes.DUP);
+                    mv.visitVarInsn(Opcodes.DLOAD, param_index);
+                    mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Double", "<init>", "(D)V", false);
+                    ++param_index; // D takes 2 local variable indexes
                     break;
                 default:
-                    mv.visitVarInsn(Opcodes.ALOAD, startIndex + i);
+                    mv.visitVarInsn(Opcodes.ALOAD, param_index);
             }
             mv.visitInsn(Opcodes.AASTORE);
+            ++param_index;
         }
     }
 
@@ -325,8 +400,12 @@ public final class Patcher  {
 
     private static int store_and_post_event(MethodVisitor mv, String EventClassName, String... ConstructorClassNames) // returns the local var index in which event obj is stored
     {
-        final int EventClass_index = ConstructorClassNames.length;
-        final int EventObject_index = ConstructorClassNames.length + 1;
+        int fixed_length = ConstructorClassNames.length;
+        // ugly, quick fix because J and D take 2 local variable indexes
+        for (String t : ConstructorClassNames)
+            if (t.equals("J_primitive") || t.equals("D_primitive")) fixed_length++;
+        final int EventClass_index = fixed_length;
+        final int EventObject_index = fixed_length + 1;
 
         push_class(mv, EventClassName.replace('/', '.'), true);
         mv.visitVarInsn(Opcodes.ASTORE, EventClass_index);

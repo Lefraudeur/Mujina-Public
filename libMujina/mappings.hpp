@@ -18,4 +18,5 @@ namespace Mappings
 	inline constexpr std::string_view net_minecraft_client_gui_hud_InGameHud = "net/minecraft/class_329";
 	inline constexpr std::string_view net_minecraft_client_render_GameRenderer = "net/minecraft/class_757";
 	inline constexpr std::string_view net_minecraft_world_BlockCollisionSpliterator = "net/minecraft/class_5329";
+	inline constexpr std::string_view net_minecraft_client_render_WorldRenderer = "net/minecraft/class_761";
 }

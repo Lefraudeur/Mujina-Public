@@ -29,7 +29,8 @@ private:
 		{Mappings::net_minecraft_network_ClientConnection, "patch_net_minecraft_network_ClientConnection"},
 		{Mappings::net_minecraft_client_gui_hud_InGameHud, "patch_net_minecraft_client_gui_hud_InGameHud"},
 		{Mappings::net_minecraft_client_render_GameRenderer, "patch_net_minecraft_client_render_GameRenderer"},
-		{Mappings::net_minecraft_world_BlockCollisionSpliterator, "patch_net_minecraft_world_BlockCollisionSpliterator"}
+		{Mappings::net_minecraft_world_BlockCollisionSpliterator, "patch_net_minecraft_world_BlockCollisionSpliterator"},
+		{Mappings::net_minecraft_client_render_WorldRenderer, "patch_net_minecraft_client_render_WorldRenderer"}
 	};
 
 	static void JNICALL ClassFileLoadHook_callback(jvmtiEnv* jvmti_env,

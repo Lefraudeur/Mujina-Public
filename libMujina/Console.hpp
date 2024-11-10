@@ -7,7 +7,7 @@
 #include "Base.hpp"
 #include <iostream>
 
-#define NO_CONSOLE
+//#define NO_CONSOLE
 
 class Console : public Base
 {
