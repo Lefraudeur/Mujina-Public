@@ -16,7 +16,7 @@ echo "Starting java build..."
 ant
 
 echo "Remapping jar..."
-java -jar "tiny-remapper-0.10.1+local-fat.jar" "build/libs/InjectableJar.jar" "../InjectableJar.jar" "yarn-tiny-1.20.4+build.local" named intermediary "libs" "libs/mclibs"
+java -jar "tiny-remapper-0.10.1+local-fat.jar" "build/libs/InjectableJar.jar" "../InjectableJar.jar" "1.20.4.tiny" yarn-named mojang "libs" "libs/mclibs"
 
 cd ..
 echo "Cd'd in to $PWD"

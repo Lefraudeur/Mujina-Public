@@ -158,7 +158,7 @@ Java::Class Java::ClassLoader::findClass(std::string class_path)
 	if (!findClass_mid)
 	{
 		jclass classLoaderClass = jni.get_env()->FindClass("java/lang/ClassLoader");
-		findClass_mid = jni.get_env()->GetMethodID(classLoaderClass, "findClass", "(Ljava/lang/String;)Ljava/lang/Class;");
+		findClass_mid = jni.get_env()->GetMethodID(classLoaderClass, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
 		jni.get_env()->DeleteLocalRef(classLoaderClass);
 	}
 	jstring str = jni.get_env()->NewStringUTF(class_path.c_str());

@@ -9,7 +9,7 @@ import io.github.lefraudeur.modules.Module;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
-@Info(category = Category.VISUAL, name = "GUI",  description = "Opens a GUI to config the cheat", key = GLFW.GLFW_KEY_RIGHT_SHIFT)
+@Info(category = Category.VISUAL, name = "GUI",  description = "Opens a GUI to config the cheat", key = GLFW.GLFW_KEY_H)
 public final class GUI extends Module {
     public GUI()
     {

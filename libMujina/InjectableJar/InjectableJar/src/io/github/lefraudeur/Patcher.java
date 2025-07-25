@@ -7,41 +7,42 @@ import java.util.function.Consumer;
 public final class Patcher  {
     public static final int ASM_VERSION = Opcodes.ASM9;
     //TODO: auto remap
-    public static final String obf_net_minecraft_client_network_ClientCommonNetworkHandler_sendPacket = "method_52787";
-    public static final String obf_net_minecraft_network_packet_Packet = "net/minecraft/class_2596";
-    public static final String obf_net_minecraft_client_network_ClientCommonNetworkHandler = "net/minecraft/class_8673";
-    public static final String obf_net_minecraft_client_MinecraftClient = "net/minecraft/class_310";
-    public static final String obf_net_minecraft_client_MinecraftClient_tick = "method_1574";
-    public static final String obf_net_minecraft_client_MinecraftClient_doAttack = "method_1536";
+    public static final String obf_net_minecraft_client_network_ClientCommonNetworkHandler_sendPacket = "send";
+    public static final String obf_net_minecraft_network_packet_Packet = "net/minecraft/network/protocol/Packet";
+    public static final String obf_net_minecraft_client_network_ClientCommonNetworkHandler = "net/minecraft/client/multiplayer/ClientCommonPacketListenerImpl";
+    public static final String obf_net_minecraft_client_MinecraftClient = "net/minecraft/client/Minecraft";
+    public static final String obf_net_minecraft_client_MinecraftClient_tick = "tick";
+    public static final String obf_net_minecraft_client_MinecraftClient_doAttack = "startAttack";
 
-    public static final String obf_net_minecraft_entity_player_PlayerEntity = "net/minecraft/class_1657";
-    public static final String obf_net_minecraft_entity_player_PlayerEntity_attack = "method_7324";
-    public static final String obf_net_minecraft_entity_Entity = "net/minecraft/class_1297";
+    public static final String obf_net_minecraft_entity_player_PlayerEntity = "net/minecraft/world/entity/player/Player";
+    public static final String obf_net_minecraft_entity_player_PlayerEntity_attack = "attack";
+    public static final String obf_net_minecraft_entity_Entity = "net/minecraft/world/entity/Entity";
 
-    public static final String obf_net_minecraft_network_ClientConnection = "net/minecraft/class_2535";
-    public static final String obf_net_minecraft_network_ClientConnection_channelRead0 = "method_10770";
+    public static final String obf_net_minecraft_network_ClientConnection = "net/minecraft/network/Connection";
+    public static final String obf_net_minecraft_network_ClientConnection_channelRead0 = "channelRead0";
     public static final String io_netty_channel_ChannelHandlerContext = "io/netty/channel/ChannelHandlerContext";
 
-    public static final String obf_net_minecraft_client_gui_hud_InGameHud = "net/minecraft/class_329";
-    public static final String obf_net_minecraft_client_gui_hud_InGameHud_render = "method_1753";
-    public static final String obf_net_minecraft_client_gui_DrawContext = "net/minecraft/class_332";
+    public static final String obf_net_minecraft_client_gui_hud_InGameHud = "net/minecraft/client/gui/Gui";
+    public static final String obf_net_minecraft_client_gui_hud_InGameHud_render = "render";
+    public static final String obf_net_minecraft_client_gui_DrawContext = "net/minecraft/client/gui/GuiGraphics";
 
-    public static final String obf_net_minecraft_client_render_GameRenderer = "net/minecraft/class_757";
-    public static final String obf_net_minecraft_client_render_GameRenderer_updateTargetedEntity = "method_3190";
+    public static final String obf_net_minecraft_client_render_GameRenderer = "net/minecraft/client/renderer/GameRenderer";
+    public static final String obf_net_minecraft_client_render_GameRenderer_updateTargetedEntity = "pick";
 
-    public static final String obf_net_minecraft_block_AbstractBlock$AbstractBlockState = "net/minecraft/class_4970$class_4971";
-    public static final String obf_net_minecraft_block_AbstractBlock$AbstractBlockState_getCollisionShape = "method_26194";
-    public static final String obf_net_minecraft_world_BlockView = "net/minecraft/class_1922";
-    public static final String obf_net_minecraft_util_math_BlockPos = "net/minecraft/class_2338";
-    public static final String obf_net_minecraft_block_ShapeContext = "net/minecraft/class_3726";
-    public static final String obf_net_minecraft_block_BlockState = "net/minecraft/class_2680";
-    public static final String obf_net_minecraft_util_shape_VoxelShape = "net/minecraft/class_265";
+    public static final String obf_net_minecraft_block_AbstractBlock$AbstractBlockState = "net/minecraft/world/level/block/state/BlockBehaviour$BlockStateBase";
+    public static final String obf_net_minecraft_block_AbstractBlock$AbstractBlockState_getCollisionShape = "getCollisionShape";
+    public static final String obf_net_minecraft_world_BlockView = "net/minecraft/world/level/BlockGetter";
+    public static final String obf_net_minecraft_util_math_BlockPos = "net/minecraft/core/BlockPos";
+    public static final String obf_net_minecraft_block_ShapeContext = "net/minecraft/world/phys/shapes/CollisionContext";
+    public static final String obf_net_minecraft_block_BlockState = "net/minecraft/world/level/block/state/BlockState";
+    public static final String obf_net_minecraft_util_shape_VoxelShape = "net/minecraft/world/phys/shapes/VoxelShape";
 
-    public static final String obf_net_minecraft_client_render_WorldRenderer = "net/minecraft/class_761";
-    public static final String obf_net_minecraft_client_render_WorldRenderer_render = "method_22710";
-    public static final String obf_net_minecraft_client_util_math_MatrixStack = "net/minecraft/class_4587";
-    public static final String obf_net_minecraft_client_render_Camera = "net/minecraft/class_4184";
-    public static final String obf_net_minecraft_client_render_LightmapTextureManager = "net/minecraft/class_765";
+    public static final String obf_net_minecraft_client_render_WorldRenderer = "net/minecraft/client/renderer/LevelRenderer";
+    public static final String obf_net_minecraft_client_render_WorldRenderer_render = "renderLevel";
+    public static final String obf_net_minecraft_client_util_math_MatrixStack = "com/mojang/blaze3d/vertex/PoseStack";
+    public static final String obf_net_minecraft_client_render_Camera = "net/minecraft/client/Camera";
+    public static final String obf_net_minecraft_client_render_LightmapTextureManager = "net/minecraft/client/renderer/LightTexture";
+
     public static final String org_joml_Matrix4f = "org/joml/Matrix4f";
 
 

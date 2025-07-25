@@ -55,7 +55,6 @@ public final class Main
             new Disabler(),
             new ServerCrasher(),
             new Timer(),
-            new timer2(),
             // The Player Category
             new Scaffold(),
             new FastUse(),
