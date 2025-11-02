@@ -2,8 +2,8 @@
 cd libMujina\InjectableJar
 
 
-if exist InjectableJar.jar rm InjectableJar.jar
-if exist InjectableJar.jar.hpp rm InjectableJar.jar.hpp
+if exist InjectableJar.jar del InjectableJar.jar
+if exist InjectableJar.jar.hpp del InjectableJar.jar.hpp
 
 cd InjectableJar
 
